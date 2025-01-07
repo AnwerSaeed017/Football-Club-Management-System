@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generated Match Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/schedule/images/santiago.jpg');
+            background: #f0f0f0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            background: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #333;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #999, 0 0 20px #999;
+            }
+            to {
+                text-shadow: 0 0 20px #666, 0 0 30px #666;
+            }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-start;
+            overflow: hidden;
+            text-align: center; /* Center navbar items */
+            padding: 5px 0; /* Add some vertical padding */
+            font-size: 20px;
+        }
+
+        .navbar a {
+            display: inline-block; /* Make links inline-block */
+            margin: 0 10px; /* Separate each link */
+            padding: 10px 20px;
+            color: white;
+            border-radius: 15px; /* Rounded corners for each link */
+            background-color: #070597; /* Individual background color */
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #7F83E8;
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+        .welcome-message {
+            text-align: center;
+            color: #333;
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: 1px; /* Slightly space out the letters */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Soft text shadow for depth */
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .welcome-message:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        .match-result {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: inline-block;
+            padding: 20px;
+            margin: 20px;
+            font-size:1.2em;
+
+        }
+        .match-result p {
+            font-size: 18px;
+            color: #333333;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Soft text shadow for depth */
+        }
+        .team-score {
+            font-weight: bold;
+            color: #2e8b57;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+         <!-- Link to view league standings -->
+    <a href="{% url 'league_standing' %}">View League Standings</a>
+
+    <!-- Back to Home Link -->
+    <a href="{% url 'home' %}">Back to Home</a>
+</div>
+<div class="container">
+    <h1 class="welcome-message">Generated Match Result</h1>
+    <div class="match-result">
+        <p>The match result has been generated:</p>
+        <p class="team-score">Home Team Goals: <span>{{ match_result.home_team_goals }}</span></p>
+        <p class="team-score">Away Team Goals: <span>{{ match_result.away_team_goals }}</span></p>
+    </div>
+    <!-- Display other necessary attributes of the match result -->
+</div>
+   
+</body>
+</html>

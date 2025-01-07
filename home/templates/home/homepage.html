@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/home/images/view.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .navbar {
+            display: center;
+            overflow: hidden;
+            text-align: center; /* Center navbar items */
+            padding: 5px 0; /* Add some vertical padding */
+            font-size: 20px;
+        }
+
+        .navbar a {
+            display: inline-block; /* Make links inline-block */
+            margin: 0 10px; /* Separate each link */
+            padding: 10px 20px;
+            color: white;
+            border-radius: 15px; /* Rounded corners for each link */
+            background-color: #070597; /* Individual background color */
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #7F83E8;
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+
+        .welcome-message {
+            text-align: center;
+            color: #333;
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: 1px; /* Slightly space out the letters */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Soft text shadow for depth */
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .welcome-message:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        
+        .centered-section {
+            text-align: center;
+            color: #333;
+            font-size: 1.5em;
+        }
+        
+        .play-match-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .play-match-button:hover {
+            background-color: darkblue;
+            transform: scale(1.05);
+        }
+
+        .container {
+            width: 98%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            /* Add overflow properties */
+            overflow-y: auto; /* Vertical scrolling */
+            max-height:470px; /* Maximum height before scrolling */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {background-color: #f9f9f9;}
+
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            .play-match-button {
+                width: auto;
+            }
+        }
+        .center-text {
+            text-align: center;
+          }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <!-- Navigation Bar Links -->
+        <a href="{% url 'league_standing' %}">View League Standings</a>
+        <a href="{% url 'match_schedule' %}">View Match Schedules</a>
+        <a href="{% url 'player_search' %}">View Transfer Market</a>
+        <a href="{% url 'players_of_club' selected_club.name %}">View Players</a>
+        <a href="{% url 'signup' %}">Back to Signup</a>
+        <a href="{% url 'select_players_for_match' %}">Credits</a>
+    </div>
+    <div class="content">
+        <h1 class="welcome-message">Welcome to Your Club Dashboard</h1>    
+        {% if selected_club %}
+        <div class="centered-section">
+        <h2>{{ selected_club.name }}</h2>
+
+        <!-- Display the next scheduled match and the Play Match button -->
+        {% if matches|length > 0 %}
+        <div class="next-match">
+            <h3>Next Match</h3>
+            <p>{{ matches.first.home_team.name }} vs {{ matches.first.away_team.name }} on {{ matches.first.match_date }}</p>
+        </div>
+            <form action="{% url 'generate_result' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="match_id" value="{{ matches.first.id }}">
+                <input type="submit" class="play-match-button" value="Play Match">
+            </form>
+        </div>
+        {% else %}
+            <p>No upcoming matches.</p>
+        {% endif %}
+          
+        <!-- List of All Upcoming Matches for Selected Club -->
+        {% if matches %}
+        <div class="container">
+            <div class="center-text">
+                <h3>All Upcoming Matches</h3>
+              </div>
+            <table>
+                <tr>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Match Date</th>
+                </tr>
+                {% for match in matches %}
+                <tr>
+                    <td>{{ match.home_team.name }}</td>
+                    <td>{{ match.away_team.name }}</td>
+                    <td>{{ match.match_date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+            <p>No upcoming matches for your club.</p>
+        {% endif %} 
+    {% else %}
+        <p>No club selected.</p>
+        <a href="{% url 'club_selection' %}">Select Club</a>
+    {% endif %}
+</div>
+</body>
+</html>

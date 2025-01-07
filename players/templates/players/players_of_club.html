@@ -1,0 +1,281 @@
+<!-- players/templates/players/players_of_club.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Players of {{ club_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+            background-image: url('/static/players/images/santiago.jpg');
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #D0B2E6;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 0 25px 10px rgba(210, 180, 240, 0.8); /* More intense and larger glow */
+            text-align: center;
+        }
+    
+        header h1 {
+            color: #05003B; 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), /* Horizontal and vertical glow effect */
+                        0 0 20px rgba(255, 255, 255, 0.8), 
+                        0 0 30px rgba(255, 255, 255, 0.8);
+            font-size: 2.5em; /* Increase the size of the text */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #5514AA;
+            color: black;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            font-size:1.2em;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        tr:hover {background-color: #ddd;}
+
+        .back-to-home {
+            display: inline-block; /* Makes the padding effective */
+            padding: 10px 20px; /* Adds space around the text */
+            background-color: #5514AA;
+            font-size: 1.25em;
+            color: #fff; 
+            border-radius: 25px; /* Rounds the corners */
+            text-decoration: none; /* Removes underline from the link */
+            font-weight: bold; /* Makes the text bold */
+            margin-top: 10px; /* Adds space at the top */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .table__body {
+            width: 100%;
+            max-height: 980px;
+            background-color: rgba(0, 0, 0, 0.199);
+        
+            margin: .8rem auto;
+            border-radius: .6rem;
+        
+            overflow: auto;
+            overflow: overlay;
+        }
+        .table__body::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        .table__body::-webkit-scrollbar-track {
+            background-color: #f2f2f2; /* Light gray track background */
+            border-radius: 10px; 
+        }
+        
+        .table__body::-webkit-scrollbar-thumb {
+            background-color: #134792; /* Dark blue scrollbar handle */
+            border-radius: 10px; /* Rounded corners for the handle */
+            border: 3px solid #f2f2f2;
+        }
+        
+        .table__body::-webkit-scrollbar-thumb:hover {
+            background: #0f3560;
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        td img {
+            width: 36px;
+            height: 36px;
+            margin-right: .5rem;
+            border-radius: 50%;
+        
+            vertical-align: middle;
+        }
+        
+        table, th, td {
+            border-collapse: collapse;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        thead th {
+            position: sticky;
+            top: 0;
+            left: 0;
+            background-color: #d5d1defe;
+            cursor: pointer;
+            text-transform: capitalize;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #0000000b;
+        }
+        
+        tbody tr {
+            --delay: .1s;
+            transition: .5s ease-in-out var(--delay), background-color 0s;
+        }
+        
+        tbody tr.hide {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        
+        tbody tr:hover {
+            background-color: #fff6 !important;
+        }
+        
+        tbody tr td,
+        tbody tr td p,
+        tbody tr td img {
+            transition: .2s ease-in-out;
+        }
+        
+        tbody tr.hide td,
+        tbody tr.hide td p {
+            padding: 0;
+            font: 0 / 0 sans-serif;
+            transition: .2s ease-in-out .5s;
+        }
+        
+        tbody tr.hide td img {
+            width: 0;
+            height: 0;
+            transition: .2s ease-in-out .5s;
+        }
+        
+        @media (max-width: 1000px) {
+            td:not(:first-of-type) {
+                min-width: 12.1rem;
+            }
+        }
+        
+        thead th span.icon-arrow {
+            display: inline-block;
+            width: 1.3rem;
+            height: 1.3rem;
+            border-radius: 50%;
+            border: 1.4px solid transparent;
+            
+            text-align: center;
+            font-size: 1rem;
+            margin-right: 0rem;
+            margin-left: 0rem;
+            transition: .2s ease-in-out;
+        }
+        
+        thead th:hover span.icon-arrow{
+            border: 1.4px solid #6c00bd;
+        }
+        
+        thead th:hover {
+            color: #6c00bd;
+        }
+        
+        thead th.active span.icon-arrow{
+            background-color: #6c00bd;
+            color: #fff;
+        }
+        
+        thead th.asc span.icon-arrow{
+            transform: rotate(180deg);
+        }
+        
+        thead th.active,tbody td.active {
+            color: #6c00bd;
+        }
+        .black-color
+{
+    color: yellow;
+}
+main.table {
+    {% comment %} width: 82vw; {% endcomment %}
+    height: 900px;
+    background-color: #fff5;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}" class="back-to-home">Back To Home Page</a>
+            <h1>Players of {{ club_name }}</h1>
+        </header>
+<main class="table">
+    <section class="table__body">
+    <table>
+        <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Age</th>
+            <th>Speed</th>
+            <th>Strength</th>
+            <th>Stamina</th>
+            <th>Agility</th>
+            <th>Passing</th>
+            <th>Dribbling</th>
+            <th>Shooting</th>
+            <th>Tackling</th>
+            <th>Positioning</th>
+            <th>Crossing</th>
+            <th>Finishing</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>
+            {% if player.image_url %}
+                <img src="{{ player.image_url }}" alt="{{ player.name }}" style="width: 50px; height: auto;">
+            {% else %}
+                No Image
+            {% endif %}
+            </td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.age }}</td>
+            <td>{{ player.playerattribute.speed }}</td>
+            <td>{{ player.playerattribute.strength }}</td>
+            <td>{{ player.playerattribute.stamina }}</td>
+            <td>{{ player.playerattribute.agility }}</td>
+            <td>{{ player.playerattribute.passing }}</td>
+            <td>{{ player.playerattribute.dribbling }}</td>
+            <td>{{ player.playerattribute.shooting }}</td>
+            <td>{{ player.playerattribute.tackling }}</td>
+            <td>{{ player.playerattribute.positioning }}</td>
+            <td>{{ player.playerattribute.crossing }}</td>
+            <td>{{ player.playerattribute.finishing }}</td>
+            <!-- Display other player information as needed -->
+        {% empty %}
+            <li>No players found for {{ club_name }}</li>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+</section>
+</main>
+</body>
+</html>

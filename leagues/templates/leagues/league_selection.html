@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select a League</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('/static/leagues/images/football.jpg');
+          }
+          h1 {
+            font-size: 2.5em; /* Larger font size */
+            color: #134792; /* Color of the text */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Subtle text shadow for depth */
+            padding: 10px; /* Padding around the text */
+            margin-bottom: 30px; /* Spacing between the heading and the content below */
+            text-transform: uppercase; /* Makes the text uppercase */
+            letter-spacing: 1.5px; /* Increases spacing between letters */
+          }
+          .container {
+            text-align: center;
+            animation: zoomIn 0.5s;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          }
+          
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+          }
+          
+          th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+          }
+          
+          tr:hover {
+            background-color: #99FF9FF; }
+          
+          th {
+            background-color: #134792;
+            color: white;
+          }
+          
+          button {
+            cursor: pointer;
+            background-color: #134792;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+          }
+          
+          button:hover {
+            background-color:#6A97D0;
+            transform: translateY(-2px);
+          }
+          
+          button:active {
+            transform: translateY(1px);
+          }
+          
+          @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+          }
+          
+          @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select a League</h1>
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>Logo</th>
+                    <th>League Name</th>
+                    <th>Country</th>
+                    <th>Founded Year</th>
+                </tr>
+                {% for league in leagues %}
+                    <tr>
+                        <td>{{ league.name }}</td>
+                        <td>{{ league.country }}</td>
+                        <td>{{ league.founded_year }}</td>
+                        <td>
+                            <button type="submit" name="league" value="{{ league.id }}">Select</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+</body>
+</html>

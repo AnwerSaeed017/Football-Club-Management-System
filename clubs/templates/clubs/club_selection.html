@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Club Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('/static/leagues/images/football.jpg');
+          }
+          h1 {
+            font-size: 2.5em; /* Larger font size */
+            color: #134792; /* Color of the text */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Subtle text shadow for depth */
+            padding: 10px; /* Padding around the text */
+            text-transform: uppercase; /* Makes the text uppercase */
+            {% comment %} letter-spacing: 1.5px; /* Increases spacing between letters */ {% endcomment %}
+          }
+        .container {
+            text-align: center;
+            animation: zoomIn 0.5s;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          }
+          p{
+            font-size: 2em;
+            color: #134792; /* Color of the text */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Subtle text shadow for depth */
+            padding: 10px; /* Padding around the text */
+            letter-spacing: 1.5px; /* Increases spacing between letters */
+          }
+          button {
+            background-color: #134792; /* Dark blue background */
+            color: white; /* White text */
+            padding: 15px 50px; /* Increased horizontal padding for wider button */
+            font-size: 1em; /* Font size */
+            border: none; /* No border */
+            border-radius: 50px; /* Highly rounded corners for a pill shape */
+            cursor: pointer; /* Hand cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+            text-transform: uppercase; /* Uppercase text */
+            font-weight: bold; /* Bold text */
+            letter-spacing: 1px; /* Space between letters */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16); /* Subtle shadow for depth */
+            display: inline-block; /* Ensures the button respects padding and border-radius */
+        }
+        
+        button:hover {
+            background-color: #0f3560; /* Slightly darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect on hover */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Larger shadow on hover for a "lifting" effect */
+        }
+        
+        button:active {
+            background-color: #0e2f4a; /* Even darker blue on active/click */
+            transform: translateY(1px); /* Pressed effect on click */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Smaller shadow on click */
+        }
+        
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .custom-select-container {
+            position: relative;
+            {% comment %} border: 1px solid #ddd; {% endcomment %}
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+        }
+        
+        .options-container div {
+            padding: 10px;
+        }
+        
+        .options-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: none;
+            background-color: white;
+            max-height: 200px; /* Adjust as needed */
+            overflow-y: auto; /* Enables vertical scrolling */
+            border: 1px solid #ddd;
+            border-top: none;
+            scrollbar-width: thin;
+            scrollbar-color: #134792 #f2f2f2;
+        }
+        
+        
+        .options-container div:hover {
+            background-color: #f2f2f2;
+        }
+.options-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.options-container::-webkit-scrollbar-track {
+    background-color: #f2f2f2; /* Light gray track background */
+    border-radius: 10px; 
+}
+
+.options-container::-webkit-scrollbar-thumb {
+    background-color: #134792; /* Dark blue scrollbar handle */
+    border-radius: 10px; /* Rounded corners for the handle */
+    border: 3px solid #f2f2f2;
+}
+
+.options-container::-webkit-scrollbar-thumb:hover {
+    background: #0f3560;
+}
+.selected-option {
+    background-color: #ffffff; /* White background for a clean look */
+    color: #134792; /* Contrast color for the text */
+    padding: 15px 30px; /* Generous padding for a spacious feel */
+    font-size: 1em; /* Balanced font size */
+    border: 2px solid #134792; /* Solid border with contrast color */
+    border-radius: 25px; /* Rounded, pill-shaped corners */
+    cursor: pointer; /* Cursor change to indicate interactivity */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    text-align: center; /* Center alignment for the text */
+    transition: all 0.3s ease; /* Smooth transition for interactions */
+    display: inline-block; /* Makes the div inline with other elements */
+    margin: 10px 0; /* Adds margin for spacing */
+    font-weight: 600; /* Semi-bold font weight */
+    letter-spacing: 0.5px; /* Subtle letter spacing for readability */
+    background-size: 6px 6px; /* Size of the diagonal stripes */
+}
+
+.selected-option:hover {
+    color: #ffffff; /* White text on hover */
+    background-color: #134792; /* Dark blue background on hover */
+    border-color: #134792; /* Border color matches the background */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+}
+
+.selected-option:active {
+    background-color: #0e2f4a; /* Even darker blue on active/click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12); /* Smaller shadow for a pressed effect */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Club Selection</h1>
+    {% comment %} <p>Welcome, {{ request.user.username }}</p> {% endcomment %}
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="custom-select-container">
+            <div class="selected-option">Select a Club</div>
+            <div class="options-container">
+                <!-- JavaScript will populate options here -->
+            </div>
+        </div>
+        <select name="club" id="clubSelect" style="display: none;">
+            {% for club in clubs %}
+                <option value="{{ club.id }}">{{ club.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">CONFIRM</button>
+    </form>
+</div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var select = document.getElementById("clubSelect");
+        var customSelectContainer = document.querySelector(".custom-select-container");
+        var selectedOption = customSelectContainer.querySelector(".selected-option");
+        var optionsContainer = customSelectContainer.querySelector(".options-container");
+    
+        // Populate custom options
+        for (var i = 0; i < select.options.length; i++) {
+            var div = document.createElement("div");
+            div.textContent = select.options[i].text;
+            div.setAttribute("data-value", select.options[i].value);
+            div.addEventListener("click", function() {
+                select.value = this.getAttribute("data-value");
+                selectedOption.textContent = this.textContent;
+                optionsContainer.style.display = 'none';
+            });
+            optionsContainer.appendChild(div);
+        }
+    
+        // Toggle options display
+        selectedOption.addEventListener("click", function() {
+            optionsContainer.style.display = optionsContainer.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+    
+</script>
+</html>

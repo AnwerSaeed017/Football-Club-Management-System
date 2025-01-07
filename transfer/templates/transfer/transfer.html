@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Market</title>
+</head>
+<body>
+    <h1>Transfer Market for {{ user_club.name }}</h1>
+    <p>Available Funds: {{ club_finances.available_funds }}</p>
+
+    <h2>Players Available for Transfer</h2>
+    <ul>
+        {% for player_info in players_available %}
+            <li>
+                {{ player_info.player.name }} - Market Value: {{ player_info.market_value }}
+                <form method="post" action="{% url 'transfer_view' user_club.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="player_id" value="{{ player_info.player.id }}">
+                    <button type="submit">Buy Player</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No players available for transfer.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Transfer History</h2>
+    <ul>
+        {% for transfer in transfers_made %}
+            <li>
+                {{ transfer.player.name }} - From: {{ transfer.from_club.name }} To: {{ transfer.to_club.name }} - Fee: {{ transfer.transfer_fee }}
+            </li>
+        {% empty %}
+            <li>No transfer history.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

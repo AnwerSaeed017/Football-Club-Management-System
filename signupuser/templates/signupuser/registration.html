@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'signupuser/css/style.css' %}">
+
+</head>
+
+    <body>
+        <div class="container">             
+            <div>
+                    <h1>Sign up</h1>
+                    
+                    <div>
+                        <style>
+                            h5{
+                                color:red;
+                            }
+                        </style>
+                    </div>
+                    
+
+                    <form action="{% url 'signup' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-group">
+                        <input type="text" name="first_name"placeholder="Firstname">
+                        </div>
+                        <div class="input-group">
+                        <input type="text" name="last_name"placeholder="Lastname">
+                        </div>
+                        <div class="input-group">
+                        <input type="text" name="username" placeholder="Username">
+                        </div>
+                        <div class="input-group">
+                        <input type="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                        <input type="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="input-group">
+                        <input type="password" name="password2" placeholder="Confirm Password">
+                        </div>
+                        <button type="submit">Sign Up</button>
+                        <div>
+                            <p>Do you have an account?</p>
+                            <a href="{% url 'login' %}">Sign In</a>
+                        </div>
+                    </form>
+                
+                
+                
+                </div>
+        </div>
+    </body>
+</html>

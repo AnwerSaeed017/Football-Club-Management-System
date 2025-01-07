@@ -1,0 +1,19 @@
+<!-- player_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top League Players</title>
+</head>
+<body>
+    <h1>Top League Players</h1>
+    <ul>
+        {% for player in players %}
+            <li>{{ player.name }} - {{ player.club }}</li>
+        {% empty %}
+            <li>No players found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

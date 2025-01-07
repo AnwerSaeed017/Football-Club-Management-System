@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4475B9 0%, #27496d 100%);
+            color: #fff;
+            text-align: center;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.03);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #aad1f9;
+            margin: 20px 0;
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        a, input[type=submit] {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 30px;
+            background-color: #2e518b;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            border: none;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        a:hover, input[type=submit]:hover {
+            background-color: #1c375c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=submit] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Club Selection Confirmation</h1>
+    {% if selected_club %}
+        <h2>Selected Club: {{ selected_club.name }}</h2>
+        <p>Club Information: [{{ selected_club.additional_info }}]</p>
+        
+
+        {% comment %} home page button will come here {% endcomment %}
+
+        <h2>First Match</h2>
+        {% if next_match %}
+            <p>Match Date: {{ next_match.match_date }}</p>
+            <p>Home Team: {{ next_match.home_team.name }}</p>
+            <p>Away Team: {{ next_match.away_team.name }}</p>
+            <form action="{% url 'generate_match_result' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="match_id" value="{{ next_match.id }}">
+                <input type="submit" value="Play Match">
+            </form>
+        {% else %}
+            <p>No upcoming matches.</p>
+        {% endif %}
+
+        <!-- Button to view match schedules -->
+        <a href="{% url 'match_schedule' %}">View Match Schedules</a>
+
+        <!-- Button to view league standings -->
+        <a href="{% url 'league_standing' %}">View League Standings</a>
+
+    {% else %}
+        <p>No club selected.</p>
+    {% endif %}
+    
+    <a href="{% url 'home' %}">Go to Home</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,556 @@
+:root {
+  --primary-color: #C0C0C0; /* Silver color */
+  --secondary-color: #FFFFFF; /* White color */
+
+  /* Other colors remain the same */
+  --black: #000000;
+  --gray: #efefef;
+  --gray-2: #757575;
+  --facebook-color: #4267B2;
+  --google-color: #DB4437;
+  --twitter-color: #1DA1F2;
+  --insta-color: #E1306C;
+}
+* {
+    user-select: none;
+  }
+  
+  *:focus {
+    outline: none;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    min-height: 100%;
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 100px;
+    margin: 0;
+    background-color: #ebf3f3;
+    background-image: linear-gradient(-45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    overflow: hidden;
+
+  }
+  /* .brd {
+    border: 1px solid #e2eded;
+    border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
+  }
+  
+  
+.football-container {
+    position: relative;
+    height: 100%;
+}
+
+.football {
+    width: 60px;
+    height: 60px;
+    background-image: linear-gradient(-45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background-size: cover;
+    position: absolute;
+    top: -60px; /* Adjust if necessary */
+    /* animation: bounce 3s ease-in-out infinite;
+} */ */
+
+
+/* Randomize animation for each football
+.football:nth-child(0) { left: 2%; animation-duration: 3.5s; }
+.football:nth-child(1) { left: 5%; animation-duration: 3.5s; }
+.football:nth-child(2) { left: 10%; animation-duration: 4s; }
+.football:nth-child(3) { left: 12%; animation-duration: 3.2s; }
+.football:nth-child(4) { left: 15%; animation-duration: 3.5s; }
+.football:nth-child(5) { left: 20%; animation-duration: 4s; }
+.football:nth-child(6) { left: 25%; animation-duration: 3.2s; }
+.football:nth-child(7) { left: 30%; animation-duration: 3.5s; }
+.football:nth-child(9) { left: 21%; animation-duration: 3.2s; }
+.football:nth-child(10) { left: 18%; animation-duration: 3.5s; }
+
+.football:nth-child(11) { right: 5%; animation-duration: 3.5s; }
+.football:nth-child(12) { right: 10%; animation-duration: 4s; }
+.football:nth-child(13) { right: 12%; animation-duration: 3.2s; }
+.football:nth-child(14) { right: 15%; animation-duration: 3.5s; }
+.football:nth-child(15) { right: 20%; animation-duration: 4s; }
+.football:nth-child(16) { right: 25%; animation-duration: 3.2s; }
+.football:nth-child(17) { right: 30%; animation-duration: 3.5s; }
+/* .football:nth-child(18) { right: 35%; animation-duration: 4s; } */
+/* .football:nth-child(19) { right: 21%; animation-duration: 3.2s; }
+.football:nth-child(20) { right: 18%; animation-duration: 3.5s; } */
+/* .football:nth-child(21) { right: 40%; animation-duration: 3.5s; } */
+
+/* Add more for additional footballs */
+
+/* @keyframes bounce {
+    0%, 100% { top: -60px; }
+    50% { top: 100vh; } /* Adjust if necessary */
+
+  #info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    color: #2d3667;
+    font-size: 16px;
+    text-align: center;
+    padding: 14px;
+    background-color: #f3f9f9;
+  }
+  
+  #app-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 300px;
+    height: 42px;
+    margin: 100px auto 0 auto;
+    z-index: 1;
+  }
+  
+  #select-button {
+    position: relative;
+    height: 16px;
+    padding: 12px 14px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #options-view-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  #selected-value {
+    font-size: 16px;
+    line-height: 1;
+    margin-right: 26px;
+  }
+  
+  .option i {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .option,
+  .label {
+    color: #2d3667;
+    font-size: 16px;
+  }
+  
+  #chevrons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 12px;
+    padding: 9px 14px;
+  }
+  
+  #chevrons i {
+    display: block;
+    height: 50%;
+    color: #d1dede;
+    font-size: 12px;
+    text-align: right;
+  }
+  
+  #options-view-button:checked + #select-button #chevrons i {
+    color: #000000;
+  }
+  
+  .options {
+    position: absolute;
+    left: 0;
+    width: 250px;
+  }
+  
+  #options {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    left: 0;
+    width: 298px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  
+  #options-view-button:checked ~ #options {
+    border: 1px solid #e2eded;
+    border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
+  }
+  
+  .option {
+    position: relative;
+    line-height: 1;
+    transition: 0.3s ease all;
+    z-index: 2;
+  }
+  
+  .option i {
+    position: absolute;
+    left: 14px;
+    padding: 0;
+    display: none;
+  }
+  
+  #options-view-button:checked ~ #options .option i {
+    display: block;
+    padding: 12px 0;
+  }
+  
+  .label {
+    display: none;
+    padding: 0;
+    margin-left: 27px;
+  }
+  
+  #options-view-button:checked ~ #options .label {
+    display: block;
+    padding: 12px 14px;
+  }
+  
+  .s-c {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+  }
+  
+  .s-c.top {
+    top: 0;
+  }
+  
+  .s-c.bottom {
+    bottom: 0;
+  }
+  
+  input[type="radio"] {
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .s-c:hover ~ i {
+    color: #fff;
+    opacity: 0;
+  }
+  
+  .s-c:hover {
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .s-c.bottom:hover + i {
+    bottom: -25px;
+    animation: moveup 0.3s ease 0.1s forwards;
+  }
+  
+  .s-c.top:hover ~ i {
+    top: -25px;
+    animation: movedown 0.3s ease 0.1s forwards;
+  }
+  
+  @keyframes moveup {
+    0% {
+      bottom: -25px;
+      opacity: 0;
+    }
+    100% {
+      bottom: 0;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes movedown {
+    0% {
+      top: -25px;
+      opacity: 0;
+    }
+    100% {
+      top: 0;
+      opacity: 1;
+    }
+  }
+  
+  .label {
+    transition: 0.3s ease all;
+  }
+  
+  .opt-val {
+    position: absolute;
+    left: 14px;
+    width: 217px;
+    height: 21px;
+    opacity: 0;
+    background-color: #fff;
+    transform: scale(0);
+  }
+  
+  .option input[type="radio"]:checked ~ .opt-val {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .option input[type="radio"]:checked ~ i {
+    top: 0;
+    bottom: auto;
+    opacity: 1;
+    animation: unset;
+  }
+  
+  .option input[type="radio"]:checked ~ i,
+  .option input[type="radio"]:checked ~ .label {
+    color: #fff;
+  }
+  
+  .option input[type="radio"]:checked ~ .label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  #options-view-button:not(:checked)
+    ~ #options
+    .option
+    input[type="radio"]:checked
+    ~ .opt-val {
+    top: -30px;
+  }
+  
+  .option:nth-child(1) input[type="radio"]:checked ~ .label:before {
+    background-color: #000;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .option:nth-child(1) input[type="radio"]:checked ~ .opt-val {
+    top: -31px;
+  }
+  
+  .option:nth-child(2) input[type="radio"]:checked ~ .label:before {
+    background-color: #ea4c89;
+  }
+  
+  .option:nth-child(2) input[type="radio"]:checked ~ .opt-val {
+    top: -71px;
+  }
+  
+  .option:nth-child(3) input[type="radio"]:checked ~ .label:before {
+    background-color: #0057ff;
+  }
+  
+  .option:nth-child(3) input[type="radio"]:checked ~ .opt-val {
+    top: -111px;
+  }
+  
+  .option:nth-child(4) input[type="radio"]:checked ~ .label:before {
+    background-color: #32c766;
+  }
+  
+  .option:nth-child(4) input[type="radio"]:checked ~ .opt-val {
+    top: -151px;
+  }
+  
+  .option:nth-child(5) input[type="radio"]:checked ~ .label:before {
+    background-color: #f48024;
+  }
+  
+  .option:nth-child(5) input[type="radio"]:checked ~ .opt-val {
+    top: -191px;
+  }
+  
+  .option:nth-child(6) input[type="radio"]:checked ~ .label:before {
+    background-color: #006400;
+    border-radius: 0 0 4px 4px;
+  }
+  
+  .option:nth-child(6) input[type="radio"]:checked ~ .opt-val {
+    top: -231px;
+  }
+  
+  .option .fa-Bundesliga {
+    color: #000;
+  }
+  
+  .option .fa-Laliga {
+    color: #ea4c89;
+  }
+  
+  .option .fa-Ligue1 {
+    color: #0057ff;
+  }
+  
+  .option .fa-Premier {
+    color: #32c766;
+  }
+  
+  .option .fa-serie-A{
+    color: #f48024;
+  }
+  
+  
+  #option-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 40px;
+    transition: 0.3s ease all;
+    z-index: 1;
+    display: none;
+  }
+  
+  #options-view-button:checked ~ #options #option-bg {
+    display: block;
+  }
+  
+  .option:hover .label {
+    color: #fff;
+  }
+  
+  .option:nth-child(1):hover ~ #option-bg {
+    top: 0;
+    background-color: #000;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .option:nth-child(2):hover ~ #option-bg {
+    top: 40px;
+    background-color: #ea4c89;
+  }
+  
+  .option:nth-child(3):hover ~ #option-bg {
+    top: 80px;
+    background-color: #0057ff;
+  }
+  
+  .option:nth-child(4):hover ~ #option-bg {
+    top: 120px;
+    background-color: #32c766;
+  }
+  
+  .option:nth-child(5):hover ~ #option-bg {
+    top: 160px;
+    background-color: #f48024;
+  }
+  
+  .option:nth-child(6):hover ~ #option-bg {
+    top: 200px;
+    background-color: #006400;
+    border-radius: 0 0 4px 4px;
+  }
+  #select-league-btn {
+    display: block; /* Make it a block element */
+    width: 50%; /* Full width */
+    padding: 10px 20px; /* Padding for better sizing */
+    background-color: #070c13; /* Example background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes on hover */
+    margin: 20px auto; /* Center the button */
+    font-size: 16px; /* Font size */
+}
+
+#select-league-btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+    width: 100%; /* Full width for the header */
+    background: #d4f3f3; /* Navbar background color */
+    border-bottom-left-radius: 25px; /* Curved bottom-left boundary */
+    border-bottom-right-radius: 25px; /* Curved bottom-right boundary */
+    overflow: hidden; /* Ensures the content fits within the boundaries */
+}
+
+ul li {
+    list-style-type: none;
+    margin: 0 40px; /* Spacing between items */
+    padding: 5px; /* Padding inside each item */
+    transition: 0.5s;
+    background: #012833; /* Background of list items */
+    border-radius: 15px; /* Curved boundaries for each item */
+    overflow: hidden; /* Ensures the background doesn't bleed outside the border-radius */
+}
+
+ul li a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #ffffff;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+ul li:hover a {
+    transform: scale(1.1); /* Slight increase to indicate hover */
+    opacity: 1; /* Full opacity */
+    filter: blur(0);
+}
+
+ul li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(114, 199, 75);
+    transition: 0.5s;
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: -1;
+}
+
+ul li a:hover:before {
+    transition: transform 0.5s;
+    transform-origin: right;
+    transform: scaleX(1);
+}
+
+  #league-selection-container {
+    border: 1px solid #000; /* Example: black border */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%; /* Adjust as necessary */
+    max-width: 600px;
+    background-color: #fff; /* Example: white background */
+    /* Other styles as necessary */
+}
+#form-heading {
+  text-align: center;
+  color: #333;
+}
+
