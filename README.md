@@ -56,4 +56,27 @@ The **FIFA Management System** simulates the complexities of club management. It
 
 ---
 
+## Screens
+![image](https://github.com/user-attachments/assets/2babe09b-1b5f-4628-8f40-86bb7b7054db)
+![image](https://github.com/user-attachments/assets/75ab0b3b-a72d-403f-8125-efa5f2d4dac5)
+
+![image](https://github.com/user-attachments/assets/ba2d22a0-b76d-4465-b6d8-1c5d06b82f21)
+![image](https://github.com/user-attachments/assets/f05098a9-966e-4a6c-aac8-447ab0fa5e1c)
+![image](https://github.com/user-attachments/assets/aa3c0fa5-4c99-4d65-9339-cdc52dce30eb)
+
+![image](https://github.com/user-attachments/assets/f879006c-7381-4235-a8c4-20cc92518017)
+![image](https://github.com/user-attachments/assets/a04fe969-dba3-425b-8ad3-a19a40240aed)
+![image](https://github.com/user-attachments/assets/d32ba4f0-18b7-46b7-8cbf-8787e106aad6)
+![image](https://github.com/user-attachments/assets/2dbf3383-959f-4646-87a1-fd6108526cb9)
+![image](https://github.com/user-attachments/assets/353d0f17-c492-4967-a6e3-823947bcf273)
+![image](https://github.com/user-attachments/assets/af03ae39-8ae7-423e-b999-1225e83404ac)
+
+
+
+
+
+
+
+
+
 
